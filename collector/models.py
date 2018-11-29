@@ -15,33 +15,33 @@ class CpuInfo(models.Model):
     guest_nice = models.FloatField(default=0)
 
     class Meta:
-        ordering = ('-time',)
+        get_latest_by = "time"
 
 
 class MemoryInfo(models.Model):
     time = models.DateTimeField(primary_key=True)
-    total = models.IntegerField(default=0)
-    available = models.IntegerField(default=0)
+    total = models.BigIntegerField(default=0)
+    available = models.BigIntegerField(default=0)
     percent = models.FloatField(default=0)
-    used = models.IntegerField(default=0)
-    free = models.IntegerField(default=0)
-    active = models.IntegerField(default=0)
-    inactive = models.IntegerField(default=0)
-    buffers = models.IntegerField(default=0)
-    cached = models.IntegerField(default=0)
-    shared = models.IntegerField(default=0)
-    slab = models.IntegerField(default=0)
+    used = models.BigIntegerField(default=0)
+    free = models.BigIntegerField(default=0)
+    active = models.BigIntegerField(default=0)
+    inactive = models.BigIntegerField(default=0)
+    buffers = models.BigIntegerField(default=0)
+    cached = models.BigIntegerField(default=0)
+    shared = models.BigIntegerField(default=0)
+    slab = models.BigIntegerField(default=0)
 
     class Meta:
-        ordering = ('-time',)
+        get_latest_by = "time"
 
 
 class DiskInfo(models.Model):
     time = models.DateTimeField(primary_key=True)
-    total = models.IntegerField(default=0)
-    used = models.IntegerField(default=0)
-    free = models.IntegerField(default=0)
+    total = models.BigIntegerField(default=0)
+    used = models.BigIntegerField(default=0)
+    free = models.BigIntegerField(default=0)
     percent = models.FloatField(default=0)
 
     class Meta:
-        ordering = ('-time',)
+        get_latest_by = "time"
