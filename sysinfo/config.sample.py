@@ -1,6 +1,9 @@
 database = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'OPTIONS': {
+            'options': '-c search_path=sysinfoschema'
+        },
         'NAME': 'sysinfo',
         'USER': 'sysinfo',
         'PASSWORD': '123123',
