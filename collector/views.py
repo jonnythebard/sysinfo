@@ -1,19 +1,19 @@
 from rest_framework import viewsets
 
-from collector.models import CpuInfo, MemoryInfo, DiskInfo
-from collector.serializers import CpuInfoSerializer, MemoryInfoSerializer, DiskInfoSerializer
+from collector.models import CpuPerformance, MemoryPerformance, DiskPerformance
+from collector.serializers import CpuPerformanceSerializer, MemoryPerformanceSerializer, DiskPerformanceSerializer
 
 
 class CpuInfoViewSet(viewsets.ModelViewSet):
-    queryset = CpuInfo.objects.all()
-    serializer_class = CpuInfoSerializer
+    queryset = CpuPerformance.objects.all()
+    serializer_class = CpuPerformanceSerializer
 
 
 class MemoryInfoViewSet(viewsets.ModelViewSet):
-    queryset = MemoryInfo.objects.all()
-    serializer_class = MemoryInfoSerializer
+    queryset = MemoryPerformance.objects.all()
+    serializer_class = MemoryPerformanceSerializer
 
 
 class DiskInfoViewSet(viewsets.ModelViewSet):
-    queryset = DiskInfo.objects.all()
-    serializer_class = DiskInfoSerializer
+    queryset = DiskPerformance.objects.all()
+    serializer_class = DiskPerformanceSerializer

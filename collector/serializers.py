@@ -1,21 +1,21 @@
 from rest_framework import serializers
-from collector.models import CpuInfo, MemoryInfo, DiskInfo
+from collector.models import CpuPerformance, MemoryPerformance, DiskPerformance
 
 
-class CpuInfoSerializer(serializers.ModelSerializer):
+class CpuPerformanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CpuInfo
+        model = CpuPerformance
         fields = ('time', 'user', 'nice', 'system', 'idle', 'iowait', 'irq', 'softirq', 'steal', 'guest', 'guest_nice')
 
 
-class MemoryInfoSerializer(serializers.ModelSerializer):
+class MemoryPerformanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MemoryInfo
+        model = MemoryPerformance
         fields = ('time', 'total', 'available', 'percent', 'used', 'free', 'active', 'inactive', 'buffers', 'cached',
                   'shared', 'slab')
 
 
-class DiskInfoSerializer(serializers.ModelSerializer):
+class DiskPerformanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DiskInfo
+        model = DiskPerformance
         fields = ('time', 'total', 'used', 'free', 'percent')
