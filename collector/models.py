@@ -15,10 +15,10 @@ class ServerInfo(models.Model):
         ID 정보는 라이센스 키에 의해 업데이트 된다.
     """
 
-    id = models.IntegerField(primary_key=True, verbose_name='ID정보')
+    server_id = models.IntegerField(primary_key=True, verbose_name='ID정보')
     name = models.CharField(max_length=32, verbose_name='BlackBox 이름')
-    manager_nic = models.CharField(max_length=16, verbose_name="괸리 NIC")
-    data_nic = models.CharField(max_length=16, verbose_name="괸리 NIC")
+    manager_nic = models.CharField(max_length=16, verbose_name="관리 NIC")
+    data_nic = models.CharField(max_length=16, verbose_name="데이터 NIC")
     ipaddr = models.GenericIPAddressField(verbose_name='관리 IP정보')
     ipaddr_data = models.GenericIPAddressField(verbose_name='Data 전송 IP정보')
     hardware_key = models.CharField(max_length=256, verbose_name='하드웨어키')
@@ -53,8 +53,8 @@ class ServerInfo(models.Model):
 
 
 class CpuPerformance(models.Model):
-    time = models.DateTimeField(primary_key=True)
-    # server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
+    time = models.DateTimeField(primary_key=True, auto_now_add=True)
+    server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
     user = models.FloatField(default=0)
     nice = models.FloatField(default=0)
     system = models.FloatField(default=0)
@@ -68,11 +68,12 @@ class CpuPerformance(models.Model):
 
     class Meta:
         get_latest_by = "time"
+        db_table = 'cpu_performance'
 
 
 class MemoryPerformance(models.Model):
-    time = models.DateTimeField(primary_key=True)
-    # server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
+    time = models.DateTimeField(primary_key=True, auto_now_add=True)
+    server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
     total = models.BigIntegerField(default=0)
     available = models.BigIntegerField(default=0)
     percent = models.FloatField(default=0)
@@ -87,11 +88,12 @@ class MemoryPerformance(models.Model):
 
     class Meta:
         get_latest_by = "time"
+        db_table = 'memory_performance'
 
 
 class DiskPerformance(models.Model):
-    time = models.DateTimeField(primary_key=True)
-    # server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
+    time = models.DateTimeField(primary_key=True, auto_now_add=True)
+    server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
     total = models.BigIntegerField(default=0)
     used = models.BigIntegerField(default=0)
     free = models.BigIntegerField(default=0)
@@ -99,13 +101,14 @@ class DiskPerformance(models.Model):
 
     class Meta:
         get_latest_by = "time"
+        db_table = 'disk_performance'
 
 
 class BlackDBPayload(models.Model):
     """
         Payload 파일 정보
     """
-    id = models.BigAutoField(primary_key=True)
+    payload_id = models.BigAutoField(primary_key=True)
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='생성시간')
     server = models.ForeignKey(ServerInfo, on_delete=models.CASCADE)
     thread = models.IntegerField(verbose_name='Parser Thread 번호')
