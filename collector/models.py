@@ -67,7 +67,7 @@ class CpuPerformance(models.Model):
     guest_nice = models.FloatField(default=0)
 
     class Meta:
-        get_latest_by = "time"
+        ordering = ('-time',)
         db_table = 'cpu_performance'
 
 
@@ -87,7 +87,7 @@ class MemoryPerformance(models.Model):
     slab = models.BigIntegerField(default=0)
 
     class Meta:
-        get_latest_by = "time"
+        ordering = ('-time',)
         db_table = 'memory_performance'
 
 
@@ -100,7 +100,7 @@ class DiskPerformance(models.Model):
     percent = models.FloatField(default=0)
 
     class Meta:
-        get_latest_by = "time"
+        ordering = ('-time',)
         db_table = 'disk_performance'
 
 
