@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 from collector.mixins import InfoViewSet
 from collector.models import CpuPerformance, MemoryPerformance, DiskPerformance, ServerInfo, BlackDBPayload
 from collector.serializers import CpuPerformanceSerializer, MemoryPerformanceSerializer, DiskPerformanceSerializer,\
-    BlackDBPayloadSerializer, SeverInfoSerializer
+    BlackDBPayloadSerializer, ServerInfoSerializer
 
 
 class CpuPerformanceViewSet(InfoViewSet):
@@ -23,7 +23,7 @@ class DiskPerformanceViewSet(InfoViewSet):
 
 class ServerInfoViewSet(ModelViewSet):
     queryset = ServerInfo.objects.all()
-    serializer_class = SeverInfoSerializer
+    serializer_class = ServerInfoSerializer
 
 
 class BlackDBPayloadViewSet(ModelViewSet):

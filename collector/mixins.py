@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import CreateModelMixin
 from rest_framework import serializers
-# from collector.models import ServerInfo
+from collector.models import ServerInfo
 
 
 class ShowInfoMixin(object):
