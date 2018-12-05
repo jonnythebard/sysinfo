@@ -23,9 +23,7 @@ class ShowInfoMixin(object):
 
 class InfoViewSet(ShowInfoMixin, CreateModelMixin, GenericViewSet):
 
-    # def perform_create(self, serializer):
-    #     pk = self.kwargs['performance_pk']
-    #     server = ServerInfo.objects.get(pk=pk)
-    #     serializer.save(server=server)
-
-    pass
+    def perform_create(self, serializer):
+        pk = self.kwargs['performance_pk']
+        server = ServerInfo.objects.get(pk=pk)
+        serializer.save(server=server)

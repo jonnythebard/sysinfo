@@ -17,22 +17,26 @@ class BlackDBPayloadSerializer(serializers.ModelSerializer):
 
 
 class CpuPerformanceSerializer(serializers.ModelSerializer):
-    # server = ServerInfoSerializer(read_only=True)
+    server = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = CpuPerformance
-        fields = ('time', 'user', 'nice', 'system', 'idle', 'iowait', 'irq', 'softirq', 'steal', 'guest',
+        fields = ('time', 'server', 'user', 'nice', 'system', 'idle', 'iowait', 'irq', 'softirq', 'steal', 'guest',
                   'guest_nice')
 
 
 class MemoryPerformanceSerializer(serializers.ModelSerializer):
+    server = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = MemoryPerformance
-        fields = ('time', 'total', 'available', 'percent', 'used', 'free', 'active', 'inactive', 'buffers',
+        fields = ('time', 'server', 'total', 'available', 'percent', 'used', 'free', 'active', 'inactive', 'buffers',
                   'cached', 'shared', 'slab')
 
 
 class DiskPerformanceSerializer(serializers.ModelSerializer):
+    server = serializers.PrimaryKeyRelatedField(read_only=True)
+
     class Meta:
         model = DiskPerformance
-        fields = ('time', 'total', 'used', 'free', 'percent')
+        fields = ('time', 'server', 'total', 'used', 'free', 'percent')
